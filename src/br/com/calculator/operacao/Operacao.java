@@ -77,8 +77,6 @@ public class Operacao {
 		 */
 		// ATUALIZAR TEXTFIELD
 		public String definir(String valor) {
-			if(valor.equals("."))
-				return pontoDecimal() ? "" : ".";
 			if (testText) { // TEXTFIELD COM OPERADOR JA DEFINIDO
 				text1 = "";
 				text2 += valor;
@@ -96,41 +94,26 @@ public class Operacao {
 		 * @author Alexsandre
 		 */
 		//PONTO DECIMAL
-		private boolean pontoDecimal() {
+		public String pontoDecimal() {
 			
 			if(!testText) {
 				if(text1.contains(".")) {
-					return true;
+					return this.text1+="";
 				}else {
-					return false;
+					return this.text1+=".";
 				}
+			}else if(text2.equals("")){
+				return this.text2+="";
 			}else {
 				if(text2.contains(".")) {
-					return true;
+					return this.text2+="";
+					
 				}else {
-					return false;
+					return text2+=".";
+					
 				}
 			}
-			/*if(text1.equals("")) { //TEXTFIELD VAZIO
-				return "";
-			}else if(testPonto) { //VERIFICA SE JÁ EXISTE PONTO DECIMAL
-				return definir("");
-			}else {
-				testPonto = true;
-				return definir(".");
-			}*/
-			
-			//if(testPonto) {
-			//	return "";
-		//	/}else if(text1.contains(".")) {
-			//	return definir(".");
-			//}else if(text2.contains(".")){
-			//	return "";
-		//	}else {
-		//		return definir(".");
-		//	}
-			
-			
+						
 		}
 
 		

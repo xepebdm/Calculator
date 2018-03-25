@@ -9,9 +9,15 @@ public class TestePontoDecimal {
 		Operacao operacao = new Operacao();
 		long inicio =  System.currentTimeMillis();
 		
-		operacao.definir("1000");
-		operacao.testOperador('+');
-		operacao.definir("5.5");
+		System.out.println(operacao.definir("1000"));
+		System.out.println(operacao.pontoDecimal());
+		//System.out.println(operacao.definir("."));
+		System.out.println(operacao.definir("500"));
+		System.out.println(operacao.testOperador('+'));
+		System.out.println(operacao.pontoDecimal());
+		//System.out.println(operacao.definir("."));
+		System.out.println(operacao.definir("5.5"));
+		//System.out.println(operacao.definir("."));
 		
 		
 		System.out.println(operacao.oper());
