@@ -15,7 +15,7 @@ public class Operacao {
 		
 		private boolean testText; //SE TRUE, PASSA A ATRIBUIR VALOR NO TEXT2
 		private boolean testOperator; //SE TRUE, OPERADOR JÁ ESTÁ DEFINIDO
-		private boolean testPonto = false; //SE TRUE, JÁ EXISTE PONTO DECIMAL NAS VARIAVEIS
+		//private boolean testPonto = false; //SE TRUE, JÁ EXISTE PONTO DECIMAL NAS VARIAVEIS
 		
 		
 		/*
@@ -72,11 +72,13 @@ public class Operacao {
 		
 		/*
 		 * @param texto do textField
-		 * @version 1.0
+		 * @version 1.1
 		 * @author Alexsandre
 		 */
 		// ATUALIZAR TEXTFIELD
 		public String definir(String valor) {
+			if(valor.equals("."))
+				return pontoDecimal() ? "" : ".";
 			if (testText) { // TEXTFIELD COM OPERADOR JA DEFINIDO
 				text1 = "";
 				text2 += valor;
@@ -90,11 +92,25 @@ public class Operacao {
 		
 		/*
 		 * @param adicionar ponto decimal
-		 * @version 1.0
+		 * @version 1.1
 		 * @author Alexsandre
 		 */
 		//PONTO DECIMAL
-		public String pontoDecimal() {
+		private boolean pontoDecimal() {
+			
+			if(!testText) {
+				if(text1.contains(".")) {
+					return true;
+				}else {
+					return false;
+				}
+			}else {
+				if(text2.contains(".")) {
+					return true;
+				}else {
+					return false;
+				}
+			}
 			/*if(text1.equals("")) { //TEXTFIELD VAZIO
 				return "";
 			}else if(testPonto) { //VERIFICA SE JÁ EXISTE PONTO DECIMAL
@@ -104,15 +120,17 @@ public class Operacao {
 				return definir(".");
 			}*/
 			
-			if(testPonto) {
-				return "";
-			}else if(text1.contains(".")) {
-				return definir(".");
-			}else if(text2.contains(".")){
-				return "";
-			}else {
-				return definir(".");
-			}
+			//if(testPonto) {
+			//	return "";
+		//	/}else if(text1.contains(".")) {
+			//	return definir(".");
+			//}else if(text2.contains(".")){
+			//	return "";
+		//	}else {
+		//		return definir(".");
+		//	}
+			
+			
 		}
 
 		
@@ -130,7 +148,7 @@ public class Operacao {
 			this.num2 = 0;
 			this.testOperator = false;
 			this.testText = false;
-			this.testPonto = false;
+			//this.testPonto = false;
 			return this.erro;
 		}
 }

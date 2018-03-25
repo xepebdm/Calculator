@@ -12,9 +12,7 @@ public class TestePontoDecimal {
 		operacao.definir("1000");
 		operacao.testOperador('+');
 		operacao.definir("5.5");
-		operacao.pontoDecimal();
-		operacao.pontoDecimal();
-		operacao.pontoDecimal();
+		
 		
 		System.out.println(operacao.oper());
 		
