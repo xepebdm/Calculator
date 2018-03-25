@@ -1,5 +1,7 @@
 package br.com.calculator.operacao;
 
+import org.hamcrest.core.StringContains;
+
 public class Operacao {
 
 	// DECLARACAO DE VARIAVEIS
@@ -11,8 +13,8 @@ public class Operacao {
 		private String text2 = ""; //SEGUNDO VALOR EM STRING PARA EXIBICAO
 		private String erro = "Não é possível dividir por 0!"; //ERRO DIVISAO POR ZERO 0
 		
-		private boolean text; //SE TRUE, PASSA A ATRIBUIR VALOR NO TEXT2
-		private boolean test; //SE TRUE, OPERADOR JÁ ESTÁ DEFINIDO
+		private boolean testText; //SE TRUE, PASSA A ATRIBUIR VALOR NO TEXT2
+		private boolean testOperator; //SE TRUE, OPERADOR JÁ ESTÁ DEFINIDO
 		private boolean testPonto = false; //SE TRUE, JÁ EXISTE PONTO DECIMAL NAS VARIAVEIS
 		
 		
@@ -23,8 +25,8 @@ public class Operacao {
 		 */
 		// BOTAO IGUAL =
 		public String oper() {
-			test = false;
-			text = false;
+			this.testOperator = false;
+			this.testText = false;
 			if (this.operador == '+') {
 				num2 = Double.valueOf(text2);
 				return String.valueOf(num1 + num2);
@@ -53,9 +55,9 @@ public class Operacao {
 
 			if (text1.equals("")) { // SEM DIGITOS NO TEXTFIELD
 				return "";
-			} else if (!test) { // NENHUM OPERADOR DEFINIDO
-				text = true;
-				test = true;
+			} else if (!testOperator) { // NENHUM OPERADOR DEFINIDO
+				testText = true;
+				testOperator = true;
 				num1 = Double.valueOf(text1);
 				this.operador = operador;
 				return text1 + operador;
@@ -75,7 +77,7 @@ public class Operacao {
 		 */
 		// ATUALIZAR TEXTFIELD
 		public String definir(String valor) {
-			if (text) { // TEXTFIELD COM OPERADOR JA DEFINIDO
+			if (testText) { // TEXTFIELD COM OPERADOR JA DEFINIDO
 				text1 = "";
 				text2 += valor;
 				return String.valueOf(num1) + this.operador + text2;
@@ -93,12 +95,22 @@ public class Operacao {
 		 */
 		//PONTO DECIMAL
 		public String pontoDecimal() {
-			if(text1.equals("")) { //TEXTFIELD VAZIO
+			/*if(text1.equals("")) { //TEXTFIELD VAZIO
 				return "";
 			}else if(testPonto) { //VERIFICA SE JÁ EXISTE PONTO DECIMAL
 				return definir("");
 			}else {
 				testPonto = true;
+				return definir(".");
+			}*/
+			
+			if(testPonto) {
+				return "";
+			}else if(text1.contains(".")) {
+				return definir(".");
+			}else if(text2.contains(".")){
+				return "";
+			}else {
 				return definir(".");
 			}
 		}
@@ -116,8 +128,8 @@ public class Operacao {
 			this.text2 = "";
 			this.num1 = 0;
 			this.num2 = 0;
-			this.test = false;
-			this.text = false;
+			this.testOperator = false;
+			this.testText = false;
 			this.testPonto = false;
 			return this.erro;
 		}
