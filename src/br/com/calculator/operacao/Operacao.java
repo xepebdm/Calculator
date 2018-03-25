@@ -90,7 +90,7 @@ public class Operacao {
 		
 		/*
 		 * @param adicionar ponto decimal
-		 * @version 1.1
+		 * @version 1.2
 		 * @author Alexsandre
 		 */
 		//PONTO DECIMAL
@@ -98,18 +98,18 @@ public class Operacao {
 			
 			if(!testText) {
 				if(text1.contains(".")) {
-					return this.text1+="";
+					return definir("");
 				}else {
-					return this.text1+=".";
+					return definir(".");
 				}
 			}else if(text2.equals("")){
-				return this.text2+="";
+				return definir("");
 			}else {
 				if(text2.contains(".")) {
-					return this.text2+="";
+					return definir("");
 					
 				}else {
-					return text2+=".";
+					return definir(".");
 					
 				}
 			}

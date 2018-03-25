@@ -13,10 +13,12 @@ public class TestePontoDecimal {
 		System.out.println(operacao.pontoDecimal());
 		//System.out.println(operacao.definir("."));
 		System.out.println(operacao.definir("500"));
-		System.out.println(operacao.testOperador('+'));
+		System.out.println(operacao.pontoDecimal());
+		System.out.println(operacao.testOperador('/'));
 		System.out.println(operacao.pontoDecimal());
 		//System.out.println(operacao.definir("."));
 		System.out.println(operacao.definir("5.5"));
+		System.out.println(operacao.pontoDecimal());
 		//System.out.println(operacao.definir("."));
 		
 		
