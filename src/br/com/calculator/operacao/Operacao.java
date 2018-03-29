@@ -1,22 +1,22 @@
 package br.com.calculator.operacao;
 
-import org.hamcrest.core.StringContains;
+import java.text.DecimalFormat;
 
 public class Operacao {
 
 	// DECLARACAO DE VARIAVEIS
-	private double num1, num2; // VALORES PARA OPERACAO
-
+	DecimalFormat dx = new DecimalFormat("0.#####");
+	
 	private char operador; // OPERADOR MATEMATICO
 
 	private String text1 = ""; // PRIMEIRO VALOR EM STRING PARA EXIBICAO
 	private String text2 = ""; // SEGUNDO VALOR EM STRING PARA EXIBICAO
+	
+	private double num1; //VALORES PARA OPERACAO
+	private double num2; // VALORES PARA OPERACAO
 
-	private boolean testText; // SE TRUE, PASSA A ATRIBUIR VALOR NO TEXT2
 	private boolean testOperator; // SE TRUE, OPERADOR JÁ ESTÁ DEFINIDO
-	// private boolean testPonto = false; //SE TRUE, JÁ EXISTE PONTO DECIMAL NAS
-	// VARIAVEIS
-
+	
 	/*
 	 * @param realizar operações pelo botão igual (=)
 	 * 
@@ -26,28 +26,24 @@ public class Operacao {
 	 */
 	// BOTAO IGUAL =
 	public String oper() {
-
-		this.testText = false;
+		this.testOperator = false;
+		num2 = Double.valueOf(text2);
 		if (this.operador == '+') {
-			num2 = Double.valueOf(text2);
-			text1 = String.valueOf(num1 + num2);
+			text1 = String.valueOf(dx.format(num1 + num2));
 			text2 = "";
-			return String.valueOf(num1 + num2);
+			return String.valueOf(dx.format(num1 + num2));
 		} else if (this.operador == '-') {
-			num2 = Double.valueOf(text2);
-			text1 = String.valueOf(num1 - num2);
+			text1 = String.valueOf(dx.format(num1 - num2));
 			text2 = "";
-			return String.valueOf(num1 - num2);
+			return String.valueOf(dx.format(num1 - num2));
 		} else if (this.operador == '*') {
-			num2 = Double.valueOf(text2);
-			text1 = String.valueOf(num1 * num2);
+			text1 = String.valueOf(dx.format(num1 * num2));
 			text2 = "";
-			return String.valueOf(num1 * num2);
+			return String.valueOf(dx.format(num1 * num2));
 		} else if (this.operador == '/') {
-			num2 = Double.valueOf(text2);
-			text1 = String.valueOf(num2 == 0 ? 0 : num1 / num2);
+			text1 = String.valueOf(dx.format(num2 == 0 ? 0 : num1 / num2));
 			text2 = "";
-			return String.valueOf(num2 == 0 ? error() : num1 / num2);
+			return String.valueOf(dx.format(num2 == 0 ? error() : num1 / num2));
 		} else {
 			return "Teste operação falso";
 		}
@@ -62,21 +58,21 @@ public class Operacao {
 	 */
 	// TESTE DE OPERADOR
 	public String testOperador(Character operador) {
-
+		
 		if (!testOperator) { // NENHUM OPERADOR DEFINIDO
 			if (text1.equals("")) { // SEM DIGITOS NO TEXTFIELD
 				return "Teste operador sem digitos";
 			}
-			testText = true;
-			testOperator = true;
+			this.testOperator = true;
 			num1 = Double.valueOf(text1);
-			//text1 = String.valueOf(num1);
+			text1 = String.valueOf(num1);
 			this.operador = operador;
 			return text1 + operador;
 		} else { // COM OPERADOR JÁ DEFINIDO
 			this.testOperator = false;
+			text1 = oper();
 			this.operador = operador;
-			return oper() + operador;
+			return text1 + operador;
 		}
 	}
 
@@ -89,10 +85,12 @@ public class Operacao {
 	 */
 	// ATUALIZAR TEXTFIELD
 	public String definir(String valor) {
-		if (testText) { // TEXTFIELD COM OPERADOR JA DEFINIDO
+		if (testOperator) { // TEXTFIELD COM OPERADOR JA DEFINIDO
 			text1 = "";
+			text1 = String.valueOf(num1);
 			text2 += valor;
-			return String.valueOf(num1) + this.operador + text2;
+			return text1 + Character.toString(this.operador) + text2;
+					
 		} else { // TEXTFIELD COM OPERADOR NÃO DEFINIDO
 			text2 = "";
 			return text1 += valor;
@@ -109,8 +107,8 @@ public class Operacao {
 	// PONTO DECIMAL
 	public String pontoDecimal() {
 
-		if (!testText) {
-			if (text1.contains(".")) {
+		if (!testOperator) {
+			if (text1.contains(".") || text1.contains(",")) {
 				return definir("");
 			} else {
 				return definir(".");
@@ -118,7 +116,7 @@ public class Operacao {
 		} else if (text2.equals("")) {
 			return definir("");
 		} else {
-			if (text2.contains(".")) {
+			if (text2.contains(".") || text1.contains(",")) {
 				return definir("");
 
 			} else {
@@ -144,7 +142,7 @@ public class Operacao {
 		this.num1 = 0;
 		this.num2 = 0;
 		this.testOperator = false;
-		this.testText = false;
+		
 
 		return "Não é possível dividir por 0!";
 	}
