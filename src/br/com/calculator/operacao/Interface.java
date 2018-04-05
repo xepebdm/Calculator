@@ -1,21 +1,23 @@
 package br.com.calculator.operacao;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.GridBagLayout;
-import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
-import javax.swing.JButton;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import br.com.calculator.MVC.View;
 
 public class Interface {
 
 	private JFrame frame;
 	private JTextField textField;
-	Operacao op = new Operacao();
+	View op = new View();
 	/**
 	 * Launch the application.
 	 */
@@ -67,7 +69,7 @@ public class Interface {
 		JButton button = new JButton("1");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				textField.setText(op.definir("1"));
+				textField.setText(op.view("1"));
 			}
 		});
 		GridBagConstraints gbc_button = new GridBagConstraints();
@@ -79,7 +81,7 @@ public class Interface {
 		JButton button_1 = new JButton("2");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("2"));
+				textField.setText(op.view("2"));
 			}
 		});
 		GridBagConstraints gbc_button_1 = new GridBagConstraints();
@@ -91,7 +93,7 @@ public class Interface {
 		JButton button_2 = new JButton("3");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("3"));
+				textField.setText(op.view("3"));
 			}
 		});
 		GridBagConstraints gbc_button_2 = new GridBagConstraints();
@@ -115,7 +117,7 @@ public class Interface {
 		JButton button_4 = new JButton("4");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("4"));
+				textField.setText(op.view("4"));
 			}
 		});
 		GridBagConstraints gbc_button_4 = new GridBagConstraints();
@@ -127,7 +129,7 @@ public class Interface {
 		JButton button_5 = new JButton("5");
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("5"));
+				textField.setText(op.view("5"));
 			}
 		});
 		GridBagConstraints gbc_button_5 = new GridBagConstraints();
@@ -139,7 +141,7 @@ public class Interface {
 		JButton button_6 = new JButton("6");
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("6"));
+				textField.setText(op.view("6"));
 			}
 		});
 		GridBagConstraints gbc_button_6 = new GridBagConstraints();
@@ -163,7 +165,7 @@ public class Interface {
 		JButton button_8 = new JButton("7");
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("7"));
+				textField.setText(op.view("7"));
 			}
 		});
 		GridBagConstraints gbc_button_8 = new GridBagConstraints();
@@ -175,7 +177,7 @@ public class Interface {
 		JButton button_9 = new JButton("8");
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("8"));
+				textField.setText(op.view("8"));
 			}
 		});
 		GridBagConstraints gbc_button_9 = new GridBagConstraints();
@@ -187,7 +189,7 @@ public class Interface {
 		JButton button_10 = new JButton("9");
 		button_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("9"));
+				textField.setText(op.view("9"));
 			}
 		});
 		GridBagConstraints gbc_button_10 = new GridBagConstraints();
@@ -223,7 +225,7 @@ public class Interface {
 		JButton button_13 = new JButton("0");
 		button_13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.definir("0"));
+				textField.setText(op.view("0"));
 			}
 		});
 		GridBagConstraints gbc_button_13 = new GridBagConstraints();
@@ -235,7 +237,7 @@ public class Interface {
 		JButton button_14 = new JButton("=");
 		button_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(op.oper());
+				textField.setText(op.operacao());
 			}
 		});
 		GridBagConstraints gbc_button_14 = new GridBagConstraints();
